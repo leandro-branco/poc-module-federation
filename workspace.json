@@ -1,7 +1,9 @@
 {
   "version": 2,
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
+  "projects": {
+    "app-shell": "apps/app-shell",
+    "common": "libs/common",
+    "mfe-creators": "apps/mfe-creators",
+    "mfe-members": "apps/mfe-members"
   }
 }
