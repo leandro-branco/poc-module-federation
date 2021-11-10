@@ -1,11 +1,2 @@
-import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
+import('./bootstrap').catch((err) => console.error(err));
 
-import App from './app/app';
-
-ReactDOM.render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-  document.getElementById('root')
-);

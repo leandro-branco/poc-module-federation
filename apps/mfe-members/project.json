@@ -20,7 +20,7 @@
         ],
         "styles": ["apps/mfe-members/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/mfe-members/webpack.config.js"
       },
       "configurations": {
         "production": {
@@ -42,6 +42,7 @@
     "serve": {
       "executor": "@nrwl/web:dev-server",
       "options": {
+        "port": 4202,
         "buildTarget": "mfe-members:build",
         "hmr": true
       },

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth, User } from 'firebase/auth';
 
 export function useAuth() {
@@ -14,15 +14,15 @@ export function useAuth() {
     };
   });
 
-  const onChange = useCallback((user: User | null) => {
+  const onChange = (user: User | null) => {
     setState({ initializing: false, user });
-  }, []);
+  }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(onChange);
 
     return () => unsubscribe();
-  });
+  }, [auth]);
 
   return state;
 }
