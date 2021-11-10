@@ -16,7 +16,7 @@ import { Header } from "./components/header/header";
 import { MainLayout } from "./components/main-layout/main-layout";
 
 // @ts-ignore
-// const Creators = React.lazy(() => import("creators/App"));
+const Creators = React.lazy(() => import("creators/App"));
 // @ts-ignore
 // const Creators = React.lazy(() => import("creators/Main"));
 
@@ -27,7 +27,7 @@ import { MainLayout } from "./components/main-layout/main-layout";
 
 const navigation = [
   { name: 'Home', path: '/', components: null, icon: HomeIcon, current: false },
-  // { name: 'Creators', path: '/creators', components: Creators, icon: SparklesIcon, current: false },
+  { name: 'Creators', path: '/creators', components: Creators, icon: SparklesIcon, current: false },
   // { name: 'Members', path: '/members', components: Members, icon: UserGroupIcon, current: true },
 ]
 

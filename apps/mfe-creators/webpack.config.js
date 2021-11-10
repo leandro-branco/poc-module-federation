@@ -8,7 +8,7 @@ module.exports = (config, context) => {
       name: 'creators',
       filename: 'remoteEntry.js',
       exposes: {
-        './Main': 'apps/mfe-creators/src/app/App.tsx',
+        './App': 'apps/mfe-creators/src/app/App.tsx',
       },
       shared: {
         ...dependencies,

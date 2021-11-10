@@ -1,11 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
+
 const nrwlConfig = require("@nrwl/react/plugins/webpack.js");
 const {  ModuleFederationPlugin } = require('webpack').container;
 const { dependencies } = require('../../package.json');
 
 module.exports = (config, context) => {
-  config = nrwlConfig(config);
+  nrwlConfig(config);
   return {
     ...config,
     plugins: [
@@ -24,7 +25,7 @@ module.exports = (config, context) => {
           firebase: { singleton: true, strictVersion: true, requiredVersion:  dependencies['firebase'], eager: true },
         },
       }),
-      new ExternalTemplateRemotesPlugin(),
+      // new ExternalTemplateRemotesPlugin(),
       // new HtmlWebpackPlugin({
       //   template: "apps/app-shell/src/index.html",
       // }),
