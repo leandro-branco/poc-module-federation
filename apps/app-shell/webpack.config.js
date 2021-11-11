@@ -1,12 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
-
 const nrwlConfig = require("@nrwl/react/plugins/webpack.js");
 const {  ModuleFederationPlugin } = require('webpack').container;
 const { dependencies } = require('../../package.json');
 
 module.exports = (config, context) => {
+  config.context = process.cwd();
+
   nrwlConfig(config);
+
   return {
     ...config,
     plugins: [
@@ -14,8 +14,8 @@ module.exports = (config, context) => {
       new ModuleFederationPlugin({
         name: 'shell',
         remotes: {
-          'creators': `creators@${getRemoteEntryUrl(4201)}`,
           'members': `members@${getRemoteEntryUrl(4202)}`,
+          'creators': `creators@${getRemoteEntryUrl(4201)}`,
         },
         shared: {
           ...dependencies,
@@ -25,10 +25,6 @@ module.exports = (config, context) => {
           firebase: { singleton: true, strictVersion: true, requiredVersion:  dependencies['firebase'], eager: true },
         },
       }),
-      // new ExternalTemplateRemotesPlugin(),
-      // new HtmlWebpackPlugin({
-      //   template: "apps/app-shell/src/index.html",
-      // }),
     ],
   };
 };

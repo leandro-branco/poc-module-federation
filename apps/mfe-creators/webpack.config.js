@@ -3,12 +3,14 @@ const { dependencies } = require('../../package.json');
 
 module.exports = (config, context) => {
   config.context = process.cwd();
+  config.optimization.runtimeChunk = false;
+
   config.plugins.push(
     new ModuleFederationPlugin({
       name: 'creators',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': 'apps/mfe-creators/src/app/App.tsx',
+        './App': 'apps/mfe-creators/src/app/index.tsx',
       },
       shared: {
         ...dependencies,
@@ -19,7 +21,10 @@ module.exports = (config, context) => {
     })
   );
 
-  config.output.publicPath = 'http://localhost:4201/';
+  config.output = {
+    uniqueName: 'creators',
+    publicPath: 'auto',
+  }
 
   return config;
 };
