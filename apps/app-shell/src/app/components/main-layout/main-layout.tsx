@@ -9,6 +9,7 @@ import {
   MenuIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import { useHistory } from 'react-router-dom';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -20,6 +21,7 @@ export interface MainLayoutProps {
 }
 
 export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
+  const history = useHistory()
 
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -27,6 +29,7 @@ export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
   return (
     <div className="h-screen md:flex md:flex-col">
       {props.header}
+
       <div className="flex-1 md:relative">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
@@ -74,9 +77,9 @@ export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <nav className="mt-5 px-2 space-y-1">
                     {props.navigation.map((item) => (
-                      <a
+                      <span
                         key={item.name}
-                        href={item.path}
+                        onClick={() => history.push(item.path)}
                         className={classNames(
                           item.current
                             ? 'bg-gray-100 text-gray-900'
@@ -92,7 +95,7 @@ export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </span>
                     ))}
                   </nav>
                 </div>
@@ -109,9 +112,9 @@ export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
                 {props.navigation.map((item) => (
-                  <a
+                  <span
                     key={item.name}
-                    href={item.path}
+                    onClick={() => history.push(item.path)}
                     className={classNames(
                       item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                       'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
@@ -125,7 +128,7 @@ export function MainLayout(props: React.PropsWithChildren<MainLayoutProps>) {
                       aria-hidden="true"
                     />
                     {item.name}
-                  </a>
+                  </span>
                 ))}
               </nav>
             </div>

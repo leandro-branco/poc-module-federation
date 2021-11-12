@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import { firebase } from '@poc-module-federation/common';
 
 import {
   HomeIcon,
@@ -27,8 +26,6 @@ const navigation = [
 ]
 
 export function App() {
-
-
   return (
     <BrowserRouter>
       <Suspense fallback={<div />}>
@@ -42,7 +39,7 @@ export function App() {
               <Suspense fallback={<div>Fallback</div>}>
                 <Switch>
                   <Route exact path="/creators" component={Creators} />
-                  <Route exact path="/" component={Members} />
+                  <Route exact path="/members" component={Members} />
                 </Switch>
               </Suspense>
             </MainLayout>
