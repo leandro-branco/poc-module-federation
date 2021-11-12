@@ -16,19 +16,14 @@ import { Header } from "./components/header/header";
 import { MainLayout } from "./components/main-layout/main-layout";
 
 // @ts-ignore
+const Members = React.lazy(() => import("members/App"));
+// @ts-ignore
 const Creators = React.lazy(() => import("creators/App"));
-// @ts-ignore
-// const Creators = React.lazy(() => import("creators/Main"));
-
-
-// @ts-ignore
-// const Members = React.lazy(() => import("creators/App"));
-
 
 const navigation = [
   { name: 'Home', path: '/', components: null, icon: HomeIcon, current: false },
-  { name: 'Creators', path: '/creators', components: Creators, icon: SparklesIcon, current: false },
-  // { name: 'Members', path: '/members', components: Members, icon: UserGroupIcon, current: true },
+  { name: 'Members', path: '/members', components: Members, icon: SparklesIcon, current: false },
+  { name: 'Creators', path: '/creators', components: Creators, icon: UserGroupIcon, current: true },
 ]
 
 export function App() {
@@ -46,8 +41,8 @@ export function App() {
 
               <Suspense fallback={<div>Fallback</div>}>
                 <Switch>
-                  <Route exact path="/" render={() => <div>Main</div>} />
-                  {/* <Route exact path="/creators" render={() => <Creators />} /> */}
+                  <Route exact path="/creators" component={Creators} />
+                  <Route exact path="/" component={Members} />
                 </Switch>
               </Suspense>
             </MainLayout>
